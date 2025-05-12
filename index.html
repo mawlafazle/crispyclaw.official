@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crispyclaw - Camilan Gurih & Pedas</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="icon" href="image/LogoCrispyClaw.png" type="image/png">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff8e1;
+      color: #4e342e;
+    }
+    header {
+      background: #ff9800;
+      color: white;
+      padding: 1em 2em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+    }
+    .logo {
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+    nav {
+      display: flex;
+      gap: 1em;
+    }
+    nav a {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+    }
+    .burger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+    .burger div {
+      width: 25px;
+      height: 3px;
+      background: white;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1em;
+    }
+    @media (max-width: 768px) {
+      .burger {
+        display: flex;
+      }
+      nav {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: #ff9800;
+        flex-direction: column;
+        align-items: center;
+        display: none;
+      }
+      nav.active {
+        display: flex;
+      }
+    }
+    .hero {
+      background: #fde68a;
+      text-align: center;
+      padding: 4em 2em;
+    }
+    .hero img {
+      width: 200px;
+      height: 200px;
+      border: 3px solid whitesmoke;
+      border-radius: 100%;
+    }
+    .hero h1 {
+      color: #d32f2f;
+      font-size: 2.5em;
+    }
+    .hero p {
+      font-size: 1.2em;
+      margin: 1em 0;
+    }
+    .cta-btn {
+      background: #d32f2f;
+      color: white;
+      padding: 0.8em 1.5em;
+      font-size: 1em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .card-img {
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+      margin-bottom: 12px;
+    }
+    .section {
+      padding: 3em 2em;
+      text-align: center;
+    }
+    .produk {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2em;
+    }
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 1.5em;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 250px;
+    }
+    .card h3 {
+      color: #e65100;
+    }
+    .card p {
+      margin-bottom: 30px;
+    }
+    .card a {
+      text-decoration: none;
+    }
+    footer {
+      background-color: #264653;
+      color: white;
+      text-align: center;
+      padding: 1.5em 1em;
+    }
+    .social-icons a {
+      color: white;
+      margin: 0 10px;
+      font-size: 1.5em;
+      transition: color 0.3s;
+    }
+    .social-icons a:hover {
+      color: #f4a261;
+    }
+
+    .testimoni-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2em;
+    margin-top: 2em;
+     }
+
+  .testimoni-card {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5em 1em;
+    max-width: 250px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: center;
+   }
+
+  .testimoni-card img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+     margin-bottom: 1em;
+  }
+
+  .stars {
+    margin: 0.5em 0;
+  }
+
+  #beli p {
+    margin-bottom: 30px;
+  }
+
+
+    @media (max-width: 600px) {
+      .produk {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    canvas {
+      display: block;
+      margin: 1em auto;
+      border: 2px solid #ff9800;
+      background-color: #fff3e0;
+    }
+
+    .game-controls {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      display: flex;
+      justify-content: space-between;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    .game-controls button {
+      width: 60px;
+      height: 60px;
+      font-size: 2em;
+      background: rgba(211, 47, 47, 0.8);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      pointer-events: auto;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s ease, background 0.3s;
+    }
+
+    .game-controls button:active {
+      transform: scale(1.1);
+      background: rgba(211, 47, 47, 1);
+    }
+
+    .guess-game {
+      margin: 20px auto;
+      text-align: center;
+    }
+    .guess-game input {
+      font-size: 1.2em;
+      padding: 0.5em;
+      margin-top: 1em;
+    }
+    .guess-game button {
+      padding: 0.8em 1.5em;
+      margin-top: 1em;
+      background: #d32f2f;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .guess-game p {
+      margin-top: 1em;
+      font-size: 1.1em;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">CRISPYCLAW</div>
+    <div class="burger" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <nav id="nav-links">
+      <a href="#produk">Produk</a>
+      <a href="#tentang">Tentang</a>
+      <a href="#testimoni">Testimoni</a>
+      <a href="#game">Game</a>
+      <a href="#beli">Beli</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <img src="Image/LogoCrispyClaw.png" alt="Logo Crispyclaw" />
+    <h1>Gurihnya Nendang, Pedasnya Bikin Ketagihan!</h1>
+    <p>Camilan unik dari tulang & ceker ayam, renyah tanpa pengawet.</p>
+    <button class="cta-btn" onclick="location.href='#beli'">Coba Sekarang</button>
+  </section>
+
+  <section class="section" id="tentang">
+    <h2>Kenapa Pilih Crispyclaw?</h2>
+    <p>
+      Camilan inovatif berbahan dasar tulang dan ceker ayam yang kaya kalsium,<br>
+      tanpa pengawet, renyah, dan menggugah selera. Dikemas modern untuk pasar milenial.
+    </p>
+  </section>
+
+  <section class="section" id="produk">
+    <h2>Varian Rasa</h2>
+    <div class="produk">
+      <div class="card">
+        <img src="image/PedasDaunJeruk.PNG" alt="Pedas Daun Jeruk" class="card-img">
+        <h3>Pedas Daun Jeruk</h3>
+        <p>Segar & nendang!</p>
+        <a href="https://wa.me/6285705875543?text=Halo%2C%20saya%20ingin%20pesan%20varian%20Pedas%20Daun%20Jeruk,%20apakah%20tersedia%20?" class="cta-btn" target="_blank">Pesan Sekarang</a>
+      </div>
+      <div class="card">
+        <img src="image/GurihAsin.png" alt="Pedas Daun Jeruk" class="card-img">
+        <h3>Asin Gurih</h3>
+        <p>Klasik tapi bikin nagih</p>
+        <a href="https://wa.me/6285705875543?text=Halo%2C%20saya%20ingin%20pesan%20varian%20Asin%20Gurih,%20apakah%20tersedia%20?" class="cta-btn" target="_blank">Pesan Sekarang</a>
+      </div>
+      <div class="card">
+        <img src="image/BBQPedasManis.PNG" alt="Pedas Daun Jeruk" class="card-img">
+        <h3>BBQ Pedas Manis</h3>
+        <p>Manis gurih dengan sentuhan pedas</p>
+        <a href="https://wa.me/6285705875543?text=Halo%2C%20saya%20ingin%20pesan%20varian%20BBQ%20Pedas%20Manis,%20apakah%20tersedia%20?" class="cta-btn" target="_blank">Pesan Sekarang</a>
+      </div>
+    </div>
+  </section>
+  <!-- Testimoni Section -->
+  <section class="section" id="testimoni">
+  <h2>Apa Kata Mereka?</h2>
+  <div class="testimoni-container">
+    <div class="testimoni-card">
+      <img src="image/Profilekosong.jpg" alt="Rina, Bandar Lampung">
+      <div class="stars">
+        <i class="fas fa-star" style="color: gold;"></i>
+        <i class="fas fa-star" style="color: gold;"></i>
+        <i class="fas fa-star" style="color: gold;"></i>
+        <i class="fas fa-star" style="color: gold;"></i>
+        <i class="fas fa-star-half-alt" style="color: gold;"></i>
+      </div>
+      <p><em>"Rasanya beda! Nggak nyangka tulang ayam bisa seenak ini."</em></p>
+      <strong>- Rina, Bandar Lampung</strong>
+    </div>
+    <div class="testimoni-card">
+      <img src="image/Profilekosong.jpg" alt="Andi, Metro">
+      <div class="stars">
+        <i class="fas fa-star" style="color: gold;"></i>
+        <i class="fas fa-star" style="color: gold;"></i>
+        <i class="fas fa-star" style="color: gold;"></i>
+        <i class="fas fa-star" style="color: gold;"></i>
+        <i class="fas fa-star" style="color: gold;"></i>
+      </div>
+      <p><em>"Kriuknya dapet, pedasnya nampol. Rekomen banget!"</em></p>
+      <strong>- Andi, Metro</strong>
+    </div>
+  </div>
+</section>
+
+  <!-- Game Section -->
+  <section class="section" id="game">
+    <h2>🎮 Mainkan Game "Tangkap Ceker!"</h2>
+    <p>Kumpulkan 50 ceker untuk hadiah, sebelum jatuh ke tanah!</p>
+    <canvas id="gameCanvas" width="300" height="400"></canvas>
+    <div class="game-controls">
+      <button id="leftBtn">◀</button>
+      <button id="rightBtn">▶</button>
+    </div>
+    <p>Skor Ceker: <span id="score">0</span> | Nyawa: <span id="lives">3</span></p>
+    <button id="startGame" class="cta-btn" onclick="startGame()">Mulai Game</button>
+    <button id="gameOverBtn" class="cta-btn" onclick="gameOver()" style="display:none;">Game Over</button>
+    <audio id="catchSound" src="sounds/catch.mp3" preload="auto"></audio>
+    <audio id="gameOverSound" src="sounds/gameover.mp3" preload="auto"></audio>
+  </section>
+
+  <!-- Tebak Angka Game -->
+  <section class="guess-game">
+    <h2>🎮 Tebak Angka</h2>
+    <p>Tebak angka antara 1 sampai 20!</p>
+    <input type="number" id="guessInput" placeholder="Masukkan angka...">
+    <button onclick="checkGuess()">Tebak</button>
+    <p id="guessResult"></p>
+  </section>
+
+  <section class="section" id="beli">
+    <h2>Cara Beli</h2>
+    <p>
+      1. Pilih rasa favoritmu<br>
+      2. Klik "Pesan Sekarang"<br>
+      3. Checkout via WhatsApp atau toko online
+    </p>
+    <a href="https://wa.me/6285705875543?text=Halo%2C%20saya%20ingin%20pesan%20produk%20anda,%20apakah%20tersedia%20?" class="cta-btn" target="_blank">Cek Toko Kami</a>
+  </section>
+
+  <!-- Tombol Sosmed -->
+  <footer>
+    <p>Ikuti kami di:</p>
+    <div class="social-icons">
+      <a href="https://www.instagram.com/crispyclaw_official" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@crispyclaw.official" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+      <a href="https://www.facebook.com/profile.php?id=61576323055351" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="https://shopee.co.id/crispyclaw" target="_blank" title="Shopee"><i class="fas fa-store"></i></a>
+    </div>
+    <p>&copy; 2025 Crispyclaw. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const nav = document.getElementById('nav-links');
+      nav.classList.toggle('active');
+    }
+
+    // GAME TANGKAP CEKER
+    const canvas = document.getElementById("gameCanvas");
+    const ctx = canvas.getContext("2d");
+    let score = 0;
+    let lives = 3;
+    let gameActive = false;
+
+    const catcher = {
+      x: 120,
+      y: 360,
+      width: 60,
+      height: 20,
+      dx: 20
+    };
+
+    const ceker = {
+      x: Math.random() * 260,
+      y: 0,
+      radius: 15,
+      dy: 2
+    };
+
+    const catchSound = document.getElementById("catchSound");
+    const gameOverSound = document.getElementById("gameOverSound");
+
+    function drawCatcher() {
+      ctx.fillStyle = "#d32f2f";
+      ctx.fillRect(catcher.x, catcher.y, catcher.width, catcher.height);
+    }
+
+    function drawCeker() {
+      ctx.beginPath();
+      ctx.arc(ceker.x, ceker.y, ceker.radius, 0, Math.PI * 2);
+      ctx.fillStyle = "#795548";
+      ctx.fill();
+      ctx.closePath();
+    }
+
+    function drawInfo() {
+      ctx.fillStyle = "#333";
+      ctx.font = "16px Arial";
+      ctx.fillText("Skor: " + score, 10, 20);
+      ctx.fillText("Nyawa: " + lives, canvas.width - 90, 20);
+    }
+
+    function update() {
+      if (!gameActive) return;
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      drawCatcher();
+      drawCeker();
+      drawInfo();
+
+      ceker.y += ceker.dy;
+
+      const isCaught =
+        ceker.y + ceker.radius >= catcher.y &&
+        ceker.x > catcher.x &&
+        ceker.x < catcher.x + catcher.width;
+
+      if (isCaught) {
+        score++;
+        document.getElementById("score").textContent = score;
+        catchSound.play();
+        if (score % 5 === 0) ceker.dy += 0.5;
+        resetCeker();
+      }
+
+      if (ceker.y + ceker.radius > canvas.height) {
+        lives--;
+        document.getElementById("lives").textContent = lives;
+        if (lives <= 0) {
+          showGameOver();
+          return;
+        }
+        resetCeker();
+      }
+
+      requestAnimationFrame(update);
+    }
+
+    function resetCeker() {
+      ceker.y = 0;
+      ceker.x = Math.random() * (canvas.width - ceker.radius * 2);
+    }
+
+    function startGame() {
+      gameActive = true;
+      score = 0;
+      lives = 3;
+      ceker.dy = 2;
+      document.getElementById("score").textContent = score;
+      document.getElementById("lives").textContent = lives;
+      document.getElementById("startGame").style.display = "none";
+      document.getElementById("gameOverBtn").style.display = "none";
+      update();
+    }
+
+    function showGameOver() {
+      gameActive = false;
+      gameOverSound.play();
+      ctx.fillStyle = "rgba(0, 0, 0, 0.6)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "white";
+      ctx.font = "22px Arial";
+      ctx.fillText("Game Over!", 90, 180);
+      ctx.fillText("Skor Anda: " + score, 85, 220);
+      document.getElementById("startGame").style.display = "inline-block";
+      document.getElementById("gameOverBtn").style.display = "inline-block";
+    }
+
+    function gameOver() {
+      gameActive = false;
+      showGameOver();
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft" && catcher.x > 0) {
+        catcher.x -= catcher.dx;
+      } else if (e.key === "ArrowRight" && catcher.x + catcher.width < canvas.width) {
+        catcher.x += catcher.dx;
+      }
+    });
+
+    document.getElementById("leftBtn").addEventListener("click", () => {
+      if (catcher.x > 0) catcher.x -= catcher.dx;
+    });
+
+    document.getElementById("rightBtn").addEventListener("click", () => {
+      if (catcher.x + catcher.width < canvas.width) catcher.x += catcher.dx;
+    });
+
+    // GAME TEBAK ANGKA
+    let randomNumber = Math.floor(Math.random() * 20) + 1;
+    let attempts = 0;
+
+    function checkGuess() {
+      const guess = parseInt(document.getElementById("guessInput").value);
+      const result = document.getElementById("guessResult");
+
+      if (isNaN(guess) || guess < 1 || guess > 20) {
+        result.textContent = "Tebakan harus antara 1 dan 20!";
+        result.style.color = "black";
+        return;
+      }
+
+      attempts++;
+
+      if (guess === randomNumber) {
+        result.textContent = `Selamat! Tebakan Anda benar setelah ${attempts} percobaan.`;
+        result.style.color = "green";
+        randomNumber = Math.floor(Math.random() * 20) + 1;
+        attempts = 0;
+      } else if (guess > randomNumber) {
+        result.textContent = "Terlalu tinggi! Coba lagi.";
+        result.style.color = "red";
+      } else {
+        result.textContent = "Terlalu rendah! Coba lagi.";
+        result.style.color = "red";
+      }
+    }
+  </script>
+</body>
+</html>
